@@ -6,8 +6,8 @@ var stringifyJSON = function (obj) {
 	  	returnObject = '"' + obj + '"';  
 	  else if ((typeof obj === "boolean") || (typeof obj === "number")) //type is number || boolean
 	  	returnObject = obj.toString();	  
-	  else if((typeof obj ==="undefined") || (typeof obj === "null"))   //obj is empty
-	  	returnObject = null;
+	  else if((typeof obj ==="undefined") || (obj === null))  			 //obj is empty
+	  	returnObject = 'null';
 	  else if (typeof obj === "object"){ 								//type is array 
 	  	if(Object.prototype.toString.call(obj) === '[object Array]'){
 	  		if(obj.length > 0) {
@@ -19,20 +19,28 @@ var stringifyJSON = function (obj) {
 	  		else returnObject = '[]';
 	  	}
 	  	else { 			
-	  		console.log(typeof obj);										//type is object
-	  		if(Object.keys(obj).length!==0) {
 		  		var newObj={};
+
 		  		for(var key in obj){
-		  			newObj[insideStringify(key)] = insideStringify(obj[key]);
+		  			if(obj.hasOwnProperty(key))
+			  			newObj[insideStringify(key)] = insideStringify(obj[key]);
 		  		}
+
 		  		var stringified ="{";
+
 		  		for(var s in newObj)
-		  			stringified += s + ":" + newObj[s] + ",";
-		  		var finalString = stringified.substr(0, stringified.length-1);
-		  		finalString += "}";
+		  			if(newObj.hasOwnProperty(s))
+			  			stringified += s + ":" + newObj[s] + ",";
+		  		
+		  		var finalString="";
+
+			  	if(stringified.length>1)
+			  		finalString = stringified.substr(0, stringified.length-1);
+			  	else 
+			  		finalString = stringified.substr();
+
+			  	finalString += "}";
 		  		returnObject = finalString;
-		  	}
-		  	else returnObject ={};
 		  }
 	  }	  
 	  else

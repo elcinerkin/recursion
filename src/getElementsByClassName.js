@@ -8,15 +8,25 @@ var getElementsByClassName = function (className) {
 	var body = document.body;
 	var child = body.childNodes;
 	var returnObject=[];
-	if(className.length>0) {
+
+	var traverseTree = function (child) {
 		for(var i=0; i<child.length; i++) {
 			if (child[i].hasOwnProperty("classList")) {
 				if(child[i].classList.contains(className)) {
 					returnObject.push(child[i]);
+					if (child[i].hasChildNodes())
+						traverseTree(child[i].childNodes);					
 				}
 			}
 		}
 	}
-	else returnObject = null;
+
+	if(className.length>0) {
+		traverseTree(child);
+	}
+	else 
+		returnObject = null;
+
 	return returnObject;
 };
+
