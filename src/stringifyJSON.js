@@ -23,8 +23,9 @@ var stringifyJSON = function (obj) {
 	  		}
 	  		else returnObject = '[]';
 	  	}
-	  	else { 															//type is object
-	  		if(obj) {
+	  	else { 			
+	  		console.log(typeof obj);										//type is object
+	  		if(Object.keys(obj).length!==0) {
 		  		var newObj={};
 		  		for(var key in obj){
 		  			newObj[insideStringify(key)] = insideStringify(obj[key]);
@@ -35,7 +36,6 @@ var stringifyJSON = function (obj) {
 		  		//console.log(stringified.replaceAt(stringified.length-1, "}"));
 		  		var finalString = stringified.substr(0, stringified.length-1);
 		  		finalString += "}";
-		  		//console.log(stringified);
 		  		returnObject = finalString;
 		  	}
 		  	else returnObject ={};
@@ -43,10 +43,7 @@ var stringifyJSON = function (obj) {
 	  }	  
 	  else
 	  	returnObject= undefined;
-
-	  	//newObj.toString = function objToString(){	
-	  	//return ;
-	  	//} 
+ 
   	return returnObject;
   }
   returnObject =insideStringify(obj);

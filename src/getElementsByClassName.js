@@ -10,12 +10,13 @@ var getElementsByClassName = function (className) {
 	var returnObject=[];
 	if(className.length>0) {
 		for(var i=0; i<child.length; i++) {
-			if(child[i].classList.contains(className)) {
-				returnObject.push(child[i]);
+			if (child[i].hasOwnProperty("classList")) {
+				if(child[i].classList.contains(className)) {
+					returnObject.push(child[i]);
+				}
 			}
 		}
 	}
 	else returnObject = null;
-
 	return returnObject;
 };
