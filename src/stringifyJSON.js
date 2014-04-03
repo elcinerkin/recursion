@@ -1,11 +1,6 @@
 var stringifyJSON = function (obj) {
   var returnObject;
 
-		String.prototype.replaceAt=function(index, character) {
-    		return this.substr(0, index) + character + this.substr(index+character.length);
-		}
-
-
   var insideStringify = function(obj) {  
 	  if(typeof obj === "string")										//type is string
 	  	returnObject = '"' + obj + '"';  
@@ -33,7 +28,6 @@ var stringifyJSON = function (obj) {
 		  		var stringified ="{";
 		  		for(var s in newObj)
 		  			stringified += s + ":" + newObj[s] + ",";
-		  		//console.log(stringified.replaceAt(stringified.length-1, "}"));
 		  		var finalString = stringified.substr(0, stringified.length-1);
 		  		finalString += "}";
 		  		returnObject = finalString;
