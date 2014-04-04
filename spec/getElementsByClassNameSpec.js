@@ -19,6 +19,10 @@ describe("getElementsByClassName", function(){
       var resultNodes = _.toArray(resultNodeList);
       var $expectedNodes = $(".targetClassName");
       var expectedNodes = _.toArray($expectedNodes);
+      console.log('result');
+      console.log(resultNodeList);
+      console.log('expected');
+      console.log(expectedNodes);
 
       expect(resultNodes).toEqual(expectedNodes);
 
@@ -27,3 +31,4 @@ describe("getElementsByClassName", function(){
   });
 
 });
+

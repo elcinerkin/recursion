@@ -22,16 +22,24 @@ var stringifyJSON = function (obj) {
 		  		var newObj={};
 
 		  		for(var key in obj){
-		  			if(obj.hasOwnProperty(key))
+		  			if(obj.hasOwnProperty(key)) {
 			  			newObj[insideStringify(key)] = insideStringify(obj[key]);
+					}
 		  		}
 
 		  		var stringified ="{";
 
-		  		for(var s in newObj)
-		  			if(newObj.hasOwnProperty(s))
-			  			stringified += s + ":" + newObj[s] + ",";
-		  		
+		  		for(var s in newObj){
+		  			if(newObj.hasOwnProperty(s)) {
+			  			if (newObj[s]===null) {
+			  				console.log("var");
+			  				delete newObj[s];}
+			  			else if (newObj[s]===undefined)
+			  				delete newObj[s];
+			  			else
+				  			stringified += s + ":" + newObj[s] + ",";	  				
+			  		}
+			  	}
 		  		var finalString="";
 
 			  	if(stringified.length>1)

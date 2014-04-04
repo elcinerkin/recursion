@@ -12,11 +12,11 @@ var getElementsByClassName = function (className) {
 	var traverseTree = function (child) {
 		for(var i=0; i<child.length; i++) {
 			if (child[i].hasOwnProperty("classList")) {
-				if(child[i].classList.contains(className)) {
+				if(child[i].classList.contains(className)) 
 					returnObject.push(child[i]);
 					if (child[i].hasChildNodes())
-						traverseTree(child[i].childNodes);					
-				}
+						traverseTree(child[i].childNodes);
+				
 			}
 		}
 	}
