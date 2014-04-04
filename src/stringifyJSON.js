@@ -6,7 +6,9 @@ var stringifyJSON = function (obj) {
 	  	returnObject = '"' + obj + '"';  
 	  else if ((typeof obj === "boolean") || (typeof obj === "number")) //type is number || boolean
 	  	returnObject = obj.toString();	  
-	  else if((typeof obj ==="undefined") || (obj === null))  			 //obj is empty
+	  else if(typeof obj ==="undefined")  			 //obj is empty
+	  	returnObject = undefined;
+	  else if (obj===null)
 	  	returnObject = 'null';
 	  else if (typeof obj === "object"){ 								//type is array 
 	  	if(Object.prototype.toString.call(obj) === '[object Array]'){
